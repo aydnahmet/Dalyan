@@ -1,0 +1,193 @@
+﻿﻿<#@ output extension=".cs" #>
+<#@ template language="C#" hostspecific="True" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="EnvDTE" #>
+<#@ assembly name="Microsoft.VisualStudio.OLE.Interop" #>
+<#@ assembly name="Microsoft.VisualStudio.Shell" #>
+<#@ assembly name="Microsoft.VisualStudio.Shell.Interop" #>
+<#@ assembly name="Microsoft.VisualStudio.Shell.Interop.8.0" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="Microsoft.VisualStudio.Shell" #>
+<#@ import namespace="Microsoft.VisualStudio.Shell.Interop" #>
+<#@ import namespace="Microsoft.VisualStudio.TextTemplating" #>
+<#
+	var allText = this.GenerationEnvironment.ToString();
+	this.GenerationEnvironment = new StringBuilder();
+
+	var lines = allText.Split(new char[] {'\n', '\r'}, StringSplitOptions.RemoveEmptyEntries);
+	if(lines.Length > 0) {
+		GenerateDTOClass(lines);
+	}
+#>
+<#+
+	class DTOProperty
+	{
+		public string TypeName;
+		public string PrivatePropertyName;
+		public string PublicPropertyName;
+		public List<string> Comments;
+
+		public void SetPropertyName(string val)
+		{
+			if(val.Length >= 2)
+			{
+				if(val[1].ToString().ToUpper() == val[1].ToString())
+				{
+					PrivatePropertyName = val;
+				} 
+				else
+				{
+					PrivatePropertyName = val[0].ToString().ToLower() + val.Substring(1);
+				}
+			} 
+			else
+			{
+				PrivatePropertyName = val[0].ToString().ToLower() + val.Substring(1);
+			}
+			PublicPropertyName = val;
+		}
+	}
+
+    void GenerateDTOClass(string[] lines)
+    {
+		var namespaceName = this.Host.ResolveParameterValue("directiveId", "namespaceDirectiveProcessor", "namespaceHint");
+		var className = Path.GetFileNameWithoutExtension(this.Host.TemplateFile);
+
+		var props = new List<DTOProperty>();
+
+		// read in all lines
+		var r = new Regex(@"[\s\t]+");
+		var currentComments = new List<string>();
+
+		foreach(var line in lines)
+		{
+			var parsedLine = line;
+			if(parsedLine.StartsWith("using"))
+			{
+				WriteLine(parsedLine);
+				continue;
+			}
+
+			var commentStart = parsedLine.IndexOf("//");
+			if(commentStart >= 0)
+			{
+				var comment = parsedLine.Substring(commentStart);
+				parsedLine = parsedLine.Substring(0, commentStart);
+				currentComments.Add(comment.Replace("//", "").Trim());
+			}
+			if(parsedLine.Trim() == "") 
+			{
+				continue;
+			}
+			
+			var lineTokens = r.Split(parsedLine);
+			var prop = new DTOProperty();
+			prop.TypeName = lineTokens[0].Trim();
+			prop.SetPropertyName(lineTokens[1].Trim());
+			prop.Comments = new List<string>(currentComments);
+			props.Add(prop);
+
+			currentComments.Clear();
+		}
+		var classLevelComments = currentComments;
+
+		var constructorSig = "";
+		foreach(var prop in props)
+		{
+			constructorSig += prop.TypeName + " " + prop.PrivatePropertyName + ", ";
+		}
+		constructorSig = constructorSig.TrimEnd(' ', ',');
+#>
+using System;
+
+// ========================================================
+// DO NOT EDIT. FILE GENERATED ON <#+ Write(DateTime.Now.ToString()); #>.
+// ========================================================
+
+namespace <#+ WriteLine(namespaceName); #>
+{
+<#+
+	if(classLevelComments.Count() > 0)
+	{
+#>
+	/// <summary>
+<#+
+		foreach(var comment in classLevelComments)
+		{
+#>
+    /// <#+ WriteLine(comment); #>
+<#+
+		}
+#>
+    /// </summary>
+<#+
+	}
+#>
+	public class <#+ WriteLine(className); #>
+	{
+		private <#+ Write(className); #>() {}
+
+<#+
+		foreach(var prop in props)
+		{
+			if(prop.Comments.Count() > 0)
+			{
+#>
+		/// <param name="<#+ Write(prop.PrivatePropertyName); #>"><#+
+				foreach(var comment in prop.Comments)
+				{
+					Write(comment);
+					Write(" ");
+				}
+				WriteLine("</param>");
+			}
+		}
+#>
+		public <#+ Write(className); #>(<#+ Write(constructorSig); #>)
+		{
+<#+
+		foreach(var prop in props)
+		{
+#>
+			this.<#+ Write(prop.PublicPropertyName); #> = <#+ Write(prop.PrivatePropertyName); #>;
+<#+
+		}
+#>
+		}
+
+<#+
+		foreach(var prop in props)
+		{
+			if(prop.Comments.Count() > 0)
+			{
+#>
+		/// <summary>
+<#+
+				foreach(var comment in prop.Comments)
+				{
+#>
+        /// <#+ WriteLine(comment); #>
+<#+
+				}
+#>
+        /// </summary>
+<#+
+			}
+#>
+		public <#+ Write(prop.TypeName + " " + prop.PublicPropertyName); #> { get; set; }
+
+<#+
+		}
+#>
+	}
+}
+<#+
+    }
+#>

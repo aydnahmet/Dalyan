@@ -1,0 +1,255 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Simple.Owin.Cors</name>
+    </assembly>
+    <members>
+        <member name="T:Simple.Owin.CorsMiddleware.CorsBuilder">
+            <summary>
+            The builder class to enable the fluent API.
+            </summary>
+        </member>
+        <member name="M:Simple.Owin.CorsMiddleware.CorsBuilder.AllowCredentials">
+            <summary>
+            Sets a flag to allow credentials on requests.
+            </summary>
+            <returns>The <see cref="T:Simple.Owin.CorsMiddleware.CorsBuilder"/> instance.</returns>
+        </member>
+        <member name="M:Simple.Owin.CorsMiddleware.CorsBuilder.AllowMethods(System.String[])">
+            <summary>
+            Sets the methods (e.g. "GET", "POST", etc.) allowed on requests.
+            </summary>
+            <param name="methods">The methods.</param>
+            <returns>The <see cref="T:Simple.Owin.CorsMiddleware.CorsBuilder"/> instance.</returns>
+            <remarks>Although the HTTP spec does not allow wild-cards for methods, this library does. Where a wildcard is used,
+            the value of the <c>Access-Control-Request-Methods</c> request header will be copied into the
+            <c>Access-Control-Allow-Methods</c> response header.</remarks>
+        </member>
+        <member name="M:Simple.Owin.CorsMiddleware.CorsBuilder.AllowHeaders(System.String[])">
+            <summary>
+            Sets the request header names allowed on requests.
+            </summary>
+            <param name="headers">The header names.</param>
+            <returns>The <see cref="T:Simple.Owin.CorsMiddleware.CorsBuilder"/> instance.</returns>
+            <remarks>Although the HTTP spec does not allow wild-cards for headers, this library does. Where a wildcard is used,
+            the value of the <c>Access-Control-Request-Headers</c> request header will be copied into the
+            <c>Access-Control-Allow-Headers</c> response header.</remarks>
+        </member>
+        <member name="M:Simple.Owin.CorsMiddleware.CorsBuilder.ExposeHeaders(System.String[])">
+            <summary>
+            Sets the response header names that it is OK for the client to use.
+            </summary>
+            <param name="headers">The header names.</param>
+            <returns>The <see cref="T:Simple.Owin.CorsMiddleware.CorsBuilder"/> instance.</returns>
+            <remarks>This method does not allow wildcards.</remarks>
+        </member>
+        <member name="M:Simple.Owin.CorsMiddleware.CorsBuilder.MaxAge(System.Int64)">
+            <summary>
+            Sets the maximum length of time, in seconds, that the result of a pre-flighted request can be cached.
+            </summary>
+            <param name="seconds">The number of seconds the result can be cached.</param>
+            <returns>The <see cref="T:Simple.Owin.CorsMiddleware.CorsBuilder"/> instance.</returns>
+        </member>
+        <member name="M:Simple.Owin.CorsMiddleware.CorsBuilder.MaxAge(System.TimeSpan)">
+            <summary>
+            Sets the maximum length of time that the result of a pre-flighted request can be cached.
+            </summary>
+            <param name="timeSpan">The time the result can be cached.</param>
+            <returns>The <see cref="T:Simple.Owin.CorsMiddleware.CorsBuilder"/> instance.</returns>
+        </member>
+        <member name="M:Simple.Owin.CorsMiddleware.CorsBuilder.UseStopStatus(System.Int32)">
+            <summary>
+            Sets a custom HTTP status code to use when halting an invalid CORS request.
+            </summary>
+            <param name="stopStatus">The stop status. Defaults to 403 (Forbidden).</param>
+            <returns>The <see cref="T:Simple.Owin.CorsMiddleware.CorsBuilder"/> instance.</returns>
+        </member>
+        <member name="M:Simple.Owin.CorsMiddleware.CorsBuilder.Build">
+            <summary>
+            Builds the OWIN AppFunc delegate for the module.
+            </summary>
+            <returns>The AppFunc delegate.</returns>
+        </member>
+        <member name="M:Simple.Owin.CorsMiddleware.CorsBuilder.op_Implicit(Simple.Owin.CorsMiddleware.CorsBuilder)~System.Func{System.Collections.Generic.IDictionary{System.String,System.Object},System.Func{System.Collections.Generic.IDictionary{System.String,System.Object},System.Threading.Tasks.Task},System.Threading.Tasks.Task}">
+            <summary>
+            Implicit cast to the AppFunc delegate.
+            </summary>
+            <param name="builder">The builder.</param>
+            <returns>The AppFunc delegate.</returns>
+        </member>
+        <member name="T:Simple.Owin.Cors">
+            <summary>
+            Static class for starting Cors definitions
+            </summary>
+        </member>
+        <member name="M:Simple.Owin.Cors.Create(Simple.Owin.CorsMiddleware.OriginMatcher[])">
+            <summary>
+            Creates a builder with the specified origins.
+            </summary>
+            <param name="origins">The origins.</param>
+            <returns>A <see cref="T:Simple.Owin.CorsMiddleware.CorsBuilder"/> that can be built upon using the fluent API</returns>
+            <remarks>
+            Thanks to the magic of implicit casting, you can pass multiple types to Create:<br/>
+            Strings with the full Origin name, e.g. "http://example.com",<br/>
+            <see cref="T:System.Text.RegularExpressions.Regex"/> instances for more complex matching, and<br/>
+            <see cref="T:System.Func`2"/> functions that take a <see cref="T:System.String"/> and return a <see cref="T:System.Boolean"/>.
+            </remarks>
+        </member>
+        <member name="M:Simple.Owin.Cors.Wildcard">
+            <summary>
+            Creates a builder that allows all origins.
+            </summary>
+            <returns>A <see cref="T:Simple.Owin.CorsMiddleware.CorsBuilder"/> that can be built upon using the fluent API</returns>
+        </member>
+        <member name="F:Simple.Owin.CorsMiddleware.HeaderKeys.AccessControlAllowOrigin">
+            <summary>
+            The <c>Access-Control-Allow-Origin</c> response header field.
+            </summary>
+        </member>
+        <member name="F:Simple.Owin.CorsMiddleware.HeaderKeys.AccessControlAllowMethods">
+            <summary>
+            The <c>Access-Control-Allow-Methods</c> response header field.
+            </summary>
+        </member>
+        <member name="F:Simple.Owin.CorsMiddleware.HeaderKeys.AccessControlAllowHeaders">
+            <summary>
+            The <c>Access-Control-Allow-Headers</c> response header field.
+            </summary>
+        </member>
+        <member name="F:Simple.Owin.CorsMiddleware.HeaderKeys.AccessControlExposeHeaders">
+            <summary>
+            The <c>Access-Control-Expose-Headers</c> response header field.
+            </summary>
+        </member>
+        <member name="F:Simple.Owin.CorsMiddleware.HeaderKeys.AccessControlMaxAge">
+            <summary>
+            The <c>Access-Control-Max-Age</c> response header field.
+            </summary>
+        </member>
+        <member name="F:Simple.Owin.CorsMiddleware.HeaderKeys.AccessControlAllowCredentials">
+            <summary>
+            The <c>Access-Control-Allow-Credentials</c> response header field.
+            </summary>
+        </member>
+        <member name="T:Simple.Owin.CorsMiddleware.OriginFuncMatcher">
+            <summary>
+            Matches origins using a function
+            </summary>
+        </member>
+        <member name="T:Simple.Owin.CorsMiddleware.OriginMatcher">
+            <summary>
+            The base class for Origin Matchers.
+            </summary>
+        </member>
+        <member name="M:Simple.Owin.CorsMiddleware.OriginMatcher.IsMatch(System.String)">
+            <summary>
+            Determines whether the specified origin is a match.
+            </summary>
+            <param name="origin">The origin.</param>
+            <returns><c>true</c> if the origin matches the rules; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="F:Simple.Owin.CorsMiddleware.OriginMatcher.Wildcard">
+            <summary>
+            The wildcard matcher.
+            </summary>
+        </member>
+        <member name="M:Simple.Owin.CorsMiddleware.OriginMatcher.op_Implicit(System.String)~Simple.Owin.CorsMiddleware.OriginMatcher">
+            <summary>
+            Implicit cast from <see cref="T:System.String"/>.
+            </summary>
+            <param name="origin">The origin.</param>
+            <returns>If the string starts with <c>/</c>, an <see cref="T:Simple.Owin.CorsMiddleware.OriginRegexMatcher"/>; otherwise, an <see cref="T:Simple.Owin.CorsMiddleware.OriginSetMatcher"/>.</returns>
+        </member>
+        <member name="M:Simple.Owin.CorsMiddleware.OriginMatcher.op_Implicit(System.Text.RegularExpressions.Regex)~Simple.Owin.CorsMiddleware.OriginMatcher">
+            <summary>
+            Implicit cast from <see cref="T:System.Text.RegularExpressions.Regex"/>
+            </summary>
+            <param name="regex">The regex.</param>
+            <returns>An <see cref="T:Simple.Owin.CorsMiddleware.OriginRegexMatcher"/>.</returns>
+        </member>
+        <member name="M:Simple.Owin.CorsMiddleware.OriginMatcher.op_Implicit(System.Func{System.String,System.Boolean})~Simple.Owin.CorsMiddleware.OriginMatcher">
+            <summary>
+            Implicit cast from <see cref="T:System.Func`2"/> of <see cref="T:System.String"/>, <see cref="T:System.Boolean"/>.
+            </summary>
+            <param name="test">The test function.</param>
+            <returns>An <see cref="T:Simple.Owin.CorsMiddleware.OriginFuncMatcher"/>.</returns>
+        </member>
+        <member name="M:Simple.Owin.CorsMiddleware.OriginFuncMatcher.#ctor(System.Func{System.String,System.Boolean})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Simple.Owin.CorsMiddleware.OriginFuncMatcher"/> class.
+            </summary>
+            <param name="test">The test function.</param>
+            <exception cref="T:System.ArgumentNullException">test</exception>
+        </member>
+        <member name="M:Simple.Owin.CorsMiddleware.OriginFuncMatcher.IsMatch(System.String)">
+            <summary>
+            Determines whether the specified origin is a match.
+            </summary>
+            <param name="origin">The origin.</param>
+            <returns>
+              The return value of the function supplied to the constructor.
+            </returns>
+        </member>
+        <member name="T:Simple.Owin.CorsMiddleware.OriginRegexMatcher">
+            <summary>
+            Matches origins using a regular expression.
+            </summary>
+        </member>
+        <member name="M:Simple.Owin.CorsMiddleware.OriginRegexMatcher.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Simple.Owin.CorsMiddleware.OriginRegexMatcher"/> class.
+            </summary>
+            <param name="pattern">The regular expression pattern.</param>
+            <exception cref="T:System.ArgumentNullException">pattern</exception>
+        </member>
+        <member name="M:Simple.Owin.CorsMiddleware.OriginRegexMatcher.#ctor(System.Text.RegularExpressions.Regex)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Simple.Owin.CorsMiddleware.OriginRegexMatcher"/> class.
+            </summary>
+            <param name="regex">The <see cref="T:System.Text.RegularExpressions.Regex"/>.</param>
+            <exception cref="T:System.ArgumentNullException">regex</exception>
+        </member>
+        <member name="M:Simple.Owin.CorsMiddleware.OriginRegexMatcher.IsMatch(System.String)">
+            <summary>
+            Determines whether the specified origin is a match.
+            </summary>
+            <param name="origin">The origin.</param>
+            <returns>
+              <c>true</c> if the origin matches the regular expression; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:Simple.Owin.CorsMiddleware.OriginSetMatcher">
+            <summary>
+            Matches <c>Host</c> against a set of allowed origins.
+            </summary>
+        </member>
+        <member name="M:Simple.Owin.CorsMiddleware.OriginSetMatcher.#ctor(System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Simple.Owin.CorsMiddleware.OriginSetMatcher"/> class.
+            </summary>
+            <param name="origins">The allowed origins.</param>
+        </member>
+        <member name="M:Simple.Owin.CorsMiddleware.OriginSetMatcher.#ctor(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Simple.Owin.CorsMiddleware.OriginSetMatcher"/> class.
+            </summary>
+            <param name="origins">The allowed origins.</param>
+        </member>
+        <member name="M:Simple.Owin.CorsMiddleware.OriginSetMatcher.IsMatch(System.String)">
+            <summary>
+            Determines whether the specified origin is a match.
+            </summary>
+            <param name="origin">The origin.</param>
+            <returns>
+              <c>true</c> if the origin is in the set; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Simple.Owin.CorsMiddleware.OriginSetMatcher.Combine(System.Collections.Generic.List{Simple.Owin.CorsMiddleware.OriginSetMatcher})">
+            <summary>
+            Combines multiple instances into a single instance.
+            </summary>
+            <param name="sets">The sets.</param>
+            <returns>A single <see cref="T:Simple.Owin.CorsMiddleware.OriginSetMatcher"/> whose set is the union of the passed instance's sets.</returns>
+        </member>
+    </members>
+</doc>

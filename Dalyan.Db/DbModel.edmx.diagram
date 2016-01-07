@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f5624c59ac7440eeae8f3d9c7f3099bb" Name="Diagram1">
+        <EntityTypeShape EntityType="DbModel.Company" Width="1.5" PointX="0.75" PointY="3.875" />
+        <EntityTypeShape EntityType="DbModel.CommonUserType" Width="1.5" PointX="3.75" PointY="8.125" />
+        <EntityTypeShape EntityType="DbModel.LogDatabase" Width="1.5" PointX="8.25" PointY="9.25" />
+        <EntityTypeShape EntityType="DbModel.LogLogin" Width="1.5" PointX="8.25" PointY="6" />
+        <EntityTypeShape EntityType="DbModel.SampleTable" Width="1.5" PointX="3.375" PointY="1.375" />
+        <EntityTypeShape EntityType="DbModel.User" Width="1.5" PointX="6" PointY="4.25" />
+        <AssociationConnector Association="DbModel.FK_User_CommonUserType" />
+        <AssociationConnector Association="DbModel.FK_SampleTable_Company" />
+        <AssociationConnector Association="DbModel.FK_User_Company" />
+        <AssociationConnector Association="DbModel.FK_LogDatabase_User" />
+        <AssociationConnector Association="DbModel.FK_LogLogin_User" />
+        <AssociationConnector Association="DbModel.FK_User_User" />
+        <AssociationConnector Association="DbModel.FK_User_User1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

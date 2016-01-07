@@ -1,0 +1,99 @@
+﻿<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="#/user/list">Users</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>Edit User</span>
+        </li>
+    </ul>
+</div>
+<!-- END PAGE BAR -->
+<!-- BEGIN PAGE TITLE-->
+<br />
+<!-- END PAGE TITLE-->
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>Edit User
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse"> </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <form class="form-horizontal" id="myForm" name="myForm" role="form"
+              ng-submit="validatePage(myForm.$valid) && myForm.$valid && userEdit()" novalidate>
+            <div class="form-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group form-md-line-input"
+                             ng:class="{true:'has-error', false:''}[allowValidation && myForm.name.$invalid]">
+                            <label class="col-md-3 control-label">Name</label>
+                            <div class="col-md-9">
+                                <input id="name" name="name" type="text" class="form-control"
+                                       ng-model="user.Name" required>
+                                <div class="form-control-focus"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group form-md-line-input"
+                             ng:class="{true:'has-error', false:''}[allowValidation && myForm.email.$invalid]">
+                            <label class="col-md-3 control-label">Email</label>
+                            <div class="col-md-9">
+                                <input id="email" name="email" type="email" class="form-control"
+                                       ng-model="user.Email" required>
+                                <div class="form-control-focus"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" ng:class="{true:'has-error error-select', false:''}[allowValidation && myForm.drpCompany.$invalid]">
+                            <label class="control-label col-md-3">Company</label>
+                            <div class="col-md-9">
+                                <ui-select ng-model="company.selected" theme="bootstrap" ng-required="true" id="drpCompany" name="drpCompany">
+                                    <ui-select-match placeholder="Select...">
+                                        <span ng-bind="$select.selected.Name"></span>
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="company in (companies | filter: $select.search) track by company.Id">
+                                        <span ng-bind="company.Name"></span>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" ng:class="{true:'has-error error-select', false:''}[allowValidation && myForm.drpUserType.$invalid]">
+                            <label class="control-label col-md-3">User Type</label>
+                            <div class="col-md-9">
+                                <ui-select ng-model="commonusertype.selected" theme="bootstrap" ng-required="true" id="drpUserType" name="drpUserType">
+                                    <ui-select-match placeholder="Select...">
+                                        <span ng-bind="$select.selected.Name"></span>
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="commonusertype in (commonusertypes | filter: $select.search) track by commonusertype.Id">
+                                        <span ng-bind="commonusertype.Name"></span>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions fluid">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button type="submit" class="btn green">Save</button>
+                        <button type="button" class="btn default" ng-click="clickBack()">Back</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>

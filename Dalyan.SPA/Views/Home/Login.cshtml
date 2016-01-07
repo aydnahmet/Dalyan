@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "~/Views/Shared/_Login.cshtml";
+    ViewBag.Title = "Login";
+}
+
+<div data-ng-app="login">
+    <div data-ng-view></div>
+</div>
+@section scripts {
+
+    @Scripts.Render("~/bundles/login")
+}

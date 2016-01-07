@@ -1,0 +1,17 @@
+﻿ui-select-bootstrap .ui-select-toggle {
+    position: relative;
+    border-color: rgb(194, 202, 216);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+}
+
+.error-select .text-muted {
+    color: #e73d4a;
+}
+
+.custom-label-select {
+    padding-top: 5px;
+    font-size: 14px;
+    color: #888;
+}
