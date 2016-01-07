@@ -1,0 +1,56 @@
+﻿<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="#/company/list">Company</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>Add Company</span>
+        </li>
+    </ul>
+</div>
+<!-- END PAGE BAR -->
+<!-- BEGIN PAGE TITLE-->
+<br />
+<!-- END PAGE TITLE-->
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>Add Company
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse"> </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <form class="form-horizontal" id="myForm" name="myForm" role="form"
+              ng-submit="validatePage(myForm.$valid) && myForm.$valid && companyAdd()" novalidate>
+            <div class="form-body">               
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group form-md-line-input"
+                             ng:class="{true:'has-error', false:''}[allowValidation && myForm.companyname.$invalid]">
+                            <label class="col-md-3 control-label">Company</label>
+                            <div class="col-md-9">
+                                <input id="companyname" name="companyname" type="text" class="form-control"
+                                       ng-model="company.Name" required>
+                                <div class="form-control-focus"></div>   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions fluid">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button type="submit" class="btn green">Save</button>
+                        <button type="button" class="btn default" ng-click="clickBack()">Back</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>

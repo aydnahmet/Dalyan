@@ -1,0 +1,257 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MediatR</name>
+    </assembly>
+    <members>
+        <member name="T:MediatR.AsyncRequestHandler`1">
+            <summary>
+            Helper class for asynchronous requests that return a void response
+            </summary>
+            <typeparam name="TMessage">The type of void request being handled</typeparam>
+        </member>
+        <member name="M:MediatR.AsyncRequestHandler`1.HandleCore(`0)">
+            <summary>
+            Handles a void request
+            </summary>
+            <param name="message">The request message</param>
+            <returns>A task representing the void response from the request</returns>
+        </member>
+        <member name="T:MediatR.CancellableAsyncRequestHandler`1">
+            <summary>
+            Helper class for cancellable, asynchronous requests that return a void response
+            </summary>
+            <typeparam name="TMessage">The type of void request being handled</typeparam>
+        </member>
+        <member name="M:MediatR.CancellableAsyncRequestHandler`1.HandleCore(`0,System.Threading.CancellationToken)">
+            <summary>
+            Handles a void request
+            </summary>
+            <param name="message">The request message</param>
+            <param name="cancellationToken">A cancellation token</param>
+            <returns>A task representing the void response from the request</returns>
+        </member>
+        <member name="T:MediatR.IAsyncNotification">
+            <summary>
+            Marker interface to represent an asynchronous notification
+            </summary>
+        </member>
+        <member name="T:MediatR.IAsyncNotificationHandler`1">
+            <summary>
+            Defines an asynchronous handler for a notification
+            </summary>
+            <typeparam name="TNotification">The type of notification being handled</typeparam>
+        </member>
+        <member name="M:MediatR.IAsyncNotificationHandler`1.Handle(`0)">
+            <summary>
+            Handles an asynchronous notification
+            </summary>
+            <param name="notification">The notification message</param>
+            <returns>A task representing handling the notification</returns>
+        </member>
+        <member name="T:MediatR.IAsyncRequest">
+            <summary>
+            Marker interface to represent an asynchronous request with a void response
+            </summary>
+        </member>
+        <member name="T:MediatR.IAsyncRequest`1">
+            <summary>
+            Marker interface to represent an asynchronous request with a response
+            </summary>
+            <typeparam name="TResponse">Response type</typeparam>
+        </member>
+        <member name="T:MediatR.IAsyncRequestHandler`2">
+            <summary>
+            Defines an asynchronous handler for a request
+            </summary>
+            <typeparam name="TRequest">The type of request being handled</typeparam>
+            <typeparam name="TResponse">The type of response from the handler</typeparam>
+        </member>
+        <member name="M:MediatR.IAsyncRequestHandler`2.Handle(`0)">
+            <summary>
+            Handles an asynchronous request
+            </summary>
+            <param name="message">The request message</param>
+            <returns>A task representing the response from the request</returns>
+        </member>
+        <member name="T:MediatR.ICancellableAsyncNotification">
+            <summary>
+            Marker interface to represent a cancellable, asynchronous notification
+            </summary>
+        </member>
+        <member name="T:MediatR.ICancellableAsyncNotificationHandler`1">
+            <summary>
+            Defines a cancellable, asynchronous handler for a notification
+            </summary>
+            <typeparam name="TNotification">The type of notification being handled</typeparam>
+        </member>
+        <member name="M:MediatR.ICancellableAsyncNotificationHandler`1.Handle(`0,System.Threading.CancellationToken)">
+            <summary>
+            Handles a cancellable, asynchronous notification
+            </summary>
+            <param name="notification">The notification message</param>
+            <param name="cancellationToken">A cancellation token</param>
+            <returns>A task representing handling the notification</returns>
+        </member>
+        <member name="T:MediatR.ICancellableAsyncRequest">
+            <summary>
+            Marker interface to represent a cancellable, asynchronous request with a void response
+            </summary>
+        </member>
+        <member name="T:MediatR.ICancellableAsyncRequest`1">
+            <summary>
+            Marker interface to represent a cancellable, asynchronous request with a response
+            </summary>
+            <typeparam name="TResponse">Response type</typeparam>
+        </member>
+        <member name="T:MediatR.ICancellableAsyncRequestHandler`2">
+            <summary>
+            Defines a cancellable, asynchronous handler for a request
+            </summary>
+            <typeparam name="TRequest">The type of request being handled</typeparam>
+            <typeparam name="TResponse">The type of response from the handler</typeparam>
+        </member>
+        <member name="M:MediatR.ICancellableAsyncRequestHandler`2.Handle(`0,System.Threading.CancellationToken)">
+            <summary>
+            Handles a cancellable, asynchronous request
+            </summary>
+            <param name="message">The request message</param>
+            <param name="cancellationToken">A cancellation token</param>
+            <returns>A task representing the response from the request</returns>
+        </member>
+        <member name="T:MediatR.IMediator">
+            <summary>
+            Defines a mediator to encapsulate request/response and publishing interaction patterns
+            </summary>
+        </member>
+        <member name="M:MediatR.IMediator.Send``1(MediatR.IRequest{``0})">
+            <summary>
+            Send a request to a single handler
+            </summary>
+            <typeparam name="TResponse">Response type</typeparam>
+            <param name="request">Request object</param>
+            <returns>Response</returns>
+        </member>
+        <member name="M:MediatR.IMediator.SendAsync``1(MediatR.IAsyncRequest{``0})">
+            <summary>
+            Asynchronously send a request to a single handler 
+            </summary>
+            <typeparam name="TResponse">Response type</typeparam>
+            <param name="request">Request object</param>
+            <returns>A task that represents the send operation. The task result contains the handler response</returns>
+        </member>
+        <member name="M:MediatR.IMediator.SendAsync``1(MediatR.ICancellableAsyncRequest{``0},System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously send a cancellable request to a single handler
+            </summary>
+            <typeparam name="TResponse">Response type</typeparam>
+            <param name="request">Request object</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A task that represents the send operation. The task result contains the handler response</returns>
+        </member>
+        <member name="M:MediatR.IMediator.Publish(MediatR.INotification)">
+            <summary>
+            Send a notification to multiple handlers
+            </summary>
+            <param name="notification">Notification object</param>
+        </member>
+        <member name="M:MediatR.IMediator.PublishAsync(MediatR.IAsyncNotification)">
+            <summary>
+            Asynchronously send a notification to multiple handlers
+            </summary>
+            <param name="notification">Notification object</param>
+            <returns>A task that represents the publish operation.</returns>
+        </member>
+        <member name="M:MediatR.IMediator.PublishAsync(MediatR.ICancellableAsyncNotification,System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously send a cancellable notification to multiple handlers
+            </summary>
+            <param name="notification">Notification object</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A task that represents the publish operation.</returns>
+        </member>
+        <member name="T:MediatR.INotification">
+            <summary>
+            Marker interface to represent a notification
+            </summary>
+        </member>
+        <member name="T:MediatR.INotificationHandler`1">
+            <summary>
+            Defines a handler for a notification
+            </summary>
+            <typeparam name="TNotification">The type of notification being handled</typeparam>
+        </member>
+        <member name="M:MediatR.INotificationHandler`1.Handle(`0)">
+            <summary>
+            Handles a notification
+            </summary>
+            <param name="notification">The notification message</param>
+        </member>
+        <member name="T:MediatR.IRequest">
+            <summary>
+            Marker interface to represent a request with a void response
+            </summary>
+        </member>
+        <member name="T:MediatR.IRequest`1">
+            <summary>
+            Marker interface to represent a request with a response
+            </summary>
+            <typeparam name="TResponse">Response type</typeparam>
+        </member>
+        <member name="T:MediatR.IRequestHandler`2">
+            <summary>
+            Defines a handler for a request
+            </summary>
+            <typeparam name="TRequest">The type of request being handled</typeparam>
+            <typeparam name="TResponse">The type of response from the handler</typeparam>
+        </member>
+        <member name="M:MediatR.IRequestHandler`2.Handle(`0)">
+            <summary>
+            Handles a request
+            </summary>
+            <param name="message">The request message</param>
+            <returns>Response from the request</returns>
+        </member>
+        <member name="T:MediatR.Mediator">
+            <summary>
+            Default mediator implementation relying on Common Service Locator for resolving handlers
+            </summary>
+        </member>
+        <member name="T:MediatR.MultiInstanceFactory">
+            <summary>
+            Factory method for creating multiple instances. Used to build instances of <see cref="T:MediatR.INotificationHandler`1"/> and <see cref="T:MediatR.IAsyncNotificationHandler`1"/>
+            </summary>
+            <param name="serviceType">Type of service to resolve</param>
+            <returns>An enumerable of instances of type <paramref name="serviceType" /></returns>
+        </member>
+        <member name="T:MediatR.RequestHandler`1">
+            <summary>
+            Helper class for requests that return a void response
+            </summary>
+            <typeparam name="TMessage">The type of void request being handled</typeparam>
+        </member>
+        <member name="M:MediatR.RequestHandler`1.HandleCore(`0)">
+            <summary>
+            Handles a void request
+            </summary>
+            <param name="message">The request message</param>
+        </member>
+        <member name="T:MediatR.SingleInstanceFactory">
+            <summary>
+            Factory method for creating single instances. Used to build instances of <see cref="T:MediatR.IRequestHandler`2"/> and <see cref="T:MediatR.IAsyncRequestHandler`2"/>
+            </summary>
+            <param name="serviceType">Type of service to resolve</param>
+            <returns>An instance of type <paramref name="serviceType" /></returns>
+        </member>
+        <member name="T:MediatR.Unit">
+            <summary>
+            Represents a Void type, since Void is not a valid type in C#
+            </summary>
+        </member>
+        <member name="F:MediatR.Unit.Value">
+            <summary>
+            Default and only value of Unit type
+            </summary>
+        </member>
+    </members>
+</doc>
