@@ -25,4 +25,9 @@ Dalyan is a single page application using AngularJS, ASP.NET & Web API technolog
 * T4 Templates
 * Microsoft Sql Server Express
 
+##Screenshoots
+![Screenshoots](https://github.com/aydnahmet/Dalyan/blob/master/Images/ss1.png)
+![Screenshoots](https://github.com/aydnahmet/Dalyan/blob/master/Images/ss2.png)
+![Screenshoots](https://github.com/aydnahmet/Dalyan/blob/master/Images/ss3.png)
+
 Best regards, Ahmet AYDIN
