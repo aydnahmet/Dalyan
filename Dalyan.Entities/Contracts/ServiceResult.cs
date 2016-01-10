@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace Dalyan.Entities.Contracts
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ServiceResult
     {
         public ServiceResultStates State { get; set; }
@@ -11,6 +14,10 @@ namespace Dalyan.Entities.Contracts
         public IEntity PortalTask { get; set; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class ServiceResult<T> : ServiceResult where T : class
     {
         public ServiceResult() { }
@@ -33,6 +40,9 @@ namespace Dalyan.Entities.Contracts
         public IList<T> ResultList { get; set; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public enum ServiceResultStates
     {
         SUCCESS,

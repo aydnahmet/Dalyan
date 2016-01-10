@@ -1,5 +1,8 @@
 ﻿namespace Dalyan.Entities.Enumerations
 {
+    /// <summary>
+    /// Log Types
+    /// </summary>
     public enum LogType
     {
         DATABASE_INSERT,

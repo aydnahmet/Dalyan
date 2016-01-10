@@ -1,5 +1,8 @@
 ﻿namespace Dalyan.Entities.Enumerations
 {
+    /// <summary>
+    /// User Types
+    /// </summary>
     public enum UserType
     {
         Admin = 1,

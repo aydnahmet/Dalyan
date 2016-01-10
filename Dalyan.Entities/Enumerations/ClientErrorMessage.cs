@@ -1,5 +1,8 @@
 ﻿namespace Dalyan.Entities.Enumerations
 {
+    /// <summary>
+    /// Client Error Message
+    /// </summary>
     public static class ClientErrorMessage
     {
         private static string _success = "Your transaction has been completed successfully.";
