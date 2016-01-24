@@ -1,5 +1,0 @@
-D:\GitHub\Dalyan\Dalyan.Database\bin\Debug\Dalyan.Database.dacpac
-D:\GitHub\Dalyan\Dalyan.Database\bin\Debug\Dalyan.Database.dll
-D:\GitHub\Dalyan\Dalyan.Database\bin\Debug\Dalyan.Database.pdb
-D:\GitHub\Dalyan\Dalyan.Database\obj\Debug\Dalyan.Database.dll
-D:\GitHub\Dalyan\Dalyan.Database\obj\Debug\Dalyan.Database.pdb
