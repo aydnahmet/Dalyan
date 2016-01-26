@@ -6,7 +6,7 @@ Dalyan is a single page application using AngularJS, ASP.NET & Web API technolog
 
 [How to Run Dalyan Application](http://ahmet-aydin.net/2016/01/run-single-page-applications-spa-template-using-angularjs-web-api-owin-token-based-authentication-and-mediator-design-pattern/)
 
-[Generate WebAPI CRUD Operations Automatic With T4 Template](http://ahmet-aydin.net/2016/01/generate-web-api-crud-operations-automatic-with-t4-template-on-dalyan-project/)
+[Generate WebAPI CRUD Operations Automatic With T4 Template](http://ahmet-aydin.net/2016/01/generate-web-api-crud-operations-automatic-with-t4-template-on-dalyan-project/){:target="_blank"}
 
 ##Project Architecture
 
