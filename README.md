@@ -1,13 +1,13 @@
 #Dalyan Web Application Project Template
 
-![](https://github.com/aydnahmet/Dalyan/blob/master/Images/asp.jpg)
+![](http://ahmet-aydin.net/wp-content/uploads/asp.jpg)
 
 Dalyan is a single page application using AngularJS, ASP.NET & Web API technologies. It is the base of a web application project. It has CRUD operation example with AngularJS. Additionaly WebAPI controllers and CRUD operations are created by T4 templates.
 
 
 ##Project Architecture
 
-![](https://github.com/aydnahmet/Dalyan/blob/master/Images/arc.jpg)
+![](http://ahmet-aydin.net/wp-content/uploads/arc.jpg)
 
 
 ##Frameworks - Tools - Libraries
